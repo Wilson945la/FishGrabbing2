@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#323538">
+  <title>摸鱼神器 · 手机版</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="phone">
+    <!-- 登录/注册 -->
+    <section class="screen active" id="screen-login">
+      <header class="game-header">
+        <button class="back-btn" id="login-back">‹ 返回</button>
+        <span class="game-title">登录 / 注册</span>
+      </header>
+      <div class="login-wrap">
+        <div class="login-logo">🐟</div>
+        <h1 class="login-title">摸鱼中心</h1>
+        <p class="login-sub">摸鱼神器 v1.4 · 手机版</p>
+
+        <div class="seg">
+          <button class="seg-btn active" data-tab="login">登录</button>
+          <button class="seg-btn" data-tab="register">注册</button>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <input type="text" id="login-account" placeholder="账号" autocomplete="username" required>
+          <input type="password" id="login-pwd" placeholder="密码" autocomplete="current-password" required>
+          <button type="submit" class="primary-btn">登 录</button>
+        </form>
+
+        <form id="register-form" class="auth-form hidden">
+          <input type="text" id="reg-name" placeholder="昵称" required>
+          <input type="text" id="reg-account" placeholder="账号" required>
+          <input type="password" id="reg-pwd" placeholder="密码" required>
+          <input type="password" id="reg-pwd2" placeholder="确认密码" required>
+          <button type="submit" class="primary-btn">注 册</button>
+        </form>
+
+        <p id="auth-msg" class="auth-msg"></p>
+      </div>
+    </section>
+
+    <!-- 主页 -->
+    <section class="screen" id="screen-home">
+      <header class="home-header">
+        <div class="user-chip" id="user-chip">
+          <span class="avatar">🙂</span>
+          <span class="uname" id="home-username">游客</span>
+        </div>
+        <div class="header-links">
+          <button class="text-link" id="btn-login">登录</button>
+          <button class="icon-link" id="btn-msg" title="消息">✉️</button>
+          <button class="icon-link" id="btn-friends" title="好友">👥</button>
+          <button class="icon-link" id="btn-exit-fs" title="退出全屏" hidden>⛶</button>
+        </div>
+      </header>
+
+      <div class="home-body">
+        <div class="cat-row">
+          <div class="title-block">
+            <h1>摸鱼中心<span class="offline-badge">离线</span></h1>
+            <p>挑一个游戏开始摸鱼</p>
+          </div>
+          <div class="cat" id="cat">🐱</div>
+        </div>
+
+        <div class="offline-entry">
+          <button class="offline-btn" id="btn-offline">🎮 离线模式 · 免登录直接玩</button>
+          <p class="offline-tip">无需联网、无需账号，点开即玩</p>
+        </div>
+
+        <div class="game-grid">
+          <button class="game-card" data-game="minesweeper">
+            <span class="gc-emoji">💣</span><span class="gc-name">扫雷</span>
+          </button>
+          <button class="game-card" data-game="tetris">
+            <span class="gc-emoji">🧱</span><span class="gc-name">俄罗斯方块</span>
+          </button>
+          <button class="game-card" data-game="aerochess">
+            <span class="gc-emoji">✈️</span><span class="gc-name">飞行棋</span>
+          </button>
+          <button class="game-card" data-game="game2048">
+            <span class="gc-emoji">🔢</span><span class="gc-name">2048</span>
+          </button>
+          <button class="game-card" data-game="uno">
+            <span class="gc-emoji">🃏</span><span class="gc-name">UNO</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 游戏屏 -->
+    <section class="screen" id="screen-game">
+      <header class="game-header">
+        <button class="back-btn" id="game-back">‹ 返回</button>
+        <span class="game-title" id="game-title">游戏</span>
+      </header>
+      <div class="game-mount" id="game-mount"></div>
+    </section>
+
+    <!-- 个人中心（轻量） -->
+    <section class="screen" id="screen-me">
+      <header class="game-header">
+        <button class="back-btn" id="me-back">‹ 返回</button>
+        <span class="game-title">个人中心</span>
+      </header>
+      <div class="me-body" id="me-body"></div>
+    </section>
+
+    <!-- 消息（轻量） -->
+    <section class="screen" id="screen-msg">
+      <header class="game-header">
+        <button class="back-btn" id="msg-back">‹ 返回</button>
+        <span class="game-title">消息</span>
+      </header>
+      <div class="me-body" id="msg-body"></div>
+    </section>
+
+    <!-- 好友（轻量） -->
+    <section class="screen" id="screen-friends">
+      <header class="game-header">
+        <button class="back-btn" id="friends-back">‹ 返回</button>
+        <span class="game-title">好友</span>
+      </header>
+      <div class="me-body" id="friends-body"></div>
+    </section>
+  </div>
+
+  <!-- 微信内打开提示 -->
+  <div id="wechat-tip" class="wechat-tip hidden">
+    <div class="wt-arrow">↗</div>
+    <div class="wt-card">
+      <p>微信内无法直接打开</p>
+      <p>请点击右上角 <b>···</b><br>选择 <b>「在浏览器打开」</b><br>即可正常游玩</p>
+    </div>
+  </div>
+
+  <script src="js/games/minesweeper.js"></script>
+  <script src="js/games/tetris.js"></script>
+  <script src="js/games/aerochess.js"></script>
+  <script src="js/games/game2048.js"></script>
+  <script src="js/games/uno.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator &&
+        (location.protocol === 'https:' ||
+         location.hostname === 'localhost' ||
+         location.hostname === '127.0.0.1')) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js?v=2').then(function (reg) {
+          reg.addEventListener('updatefound', function () {
+            var newWorker = reg.installing;
+            newWorker.addEventListener('statechange', function () {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                if (confirm('发现新版本，是否立即刷新？')) location.reload();
+              }
+            });
+          });
+        }).catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

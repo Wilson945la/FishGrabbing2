@@ -1,0 +1,20 @@
+{
+  "name": "摸鱼小游戏合集",
+  "short_name": "摸鱼合集",
+  "description": "手机端休闲小游戏：扫雷、俄罗斯方块、飞行棋、2048",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f1115",
+  "theme_color": "#323538",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
